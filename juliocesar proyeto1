@@ -1,0 +1,60 @@
+
+tareas = []
+
+
+def agregar_tarea():
+    """Agrega una nueva tarea a la lista"""
+    print("\n---  Agregar Nueva Tarea ---")
+    nombre = input("Ingresa el nombre de la tarea: ").strip()
+
+    
+    if nombre == "":
+        print(" Error: El nombre de la tarea no puede estar vacío.")
+        return
+
+    
+    nueva_tarea = {
+        "nombre": nombre,
+        "estado": "Pendiente."
+    }
+    tareas.append(nueva_tarea)
+    print(f" Tarea '{nombre}' agregada correctamente..")
+
+
+def listar_tareas():
+    """Muestra todas las tareas registradas"""
+    print("--- Lista de Tareas ---")
+
+    
+    if len(tareas) == 0:
+        print(" No hay tareas registradas aún.")
+        return
+
+    
+    for i, tarea in enumerate(tareas, start=1):
+        print(f"{i}. {tarea['nombre']} | Estado: {tarea['estado']}")
+
+
+def completar_tarea():
+    """Marca una tarea como completada"""
+    print("\n---  Marcar Tarea como Completada ---")
+
+    if len(tareas) == 0:
+        print("No hay tareas para completar.")
+        return
+
+    listar_tareas()
+    try:
+        indice = int(input("Ingresa el número de la tarea a completar: ")) - 1
+
+        
+        if 0 <= indice < len(tareas):
+            tareas[indice]["estado"] = "Completada"
+            print(f" Tarea '{tareas[indice]['nombre']}' marcada como completada.")
+        else:
+            print("Error: Número de tarea no existe.")
+
+    except ValueError:
+        print("Error: Debes ingresar un número válido.")
+
+
