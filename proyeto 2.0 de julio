@@ -1,0 +1,33 @@
+except ValueError:
+        print("Error: Debes ingresar un número válido.")
+
+def menu_principal():
+    print("\n=====  SISTEMA DE REGISTRO DE TAREAS  =====")
+    print("1. Agregar tarea")
+    print("2. Listar tareas registradas")
+    print("3. Marcar tarea como completada")
+    print("4. Eliminar tarea")
+    print("5. Salir del sistema")
+    print("=" * 45)
+
+
+
+# ---------------------- PROGRAMA PRINCIPAL ----------------------
+
+while True:
+    menu_principal()
+    opcion = input("Elige una opción (1-5): ").strip()
+
+    if opcion == "1":
+        agregar_tarea()
+    elif opcion == "2":
+        listar_tareas()
+    elif opcion == "3":
+        completar_tarea()
+    elif opcion == "4":
+        eliminar_tarea()
+    elif opcion == "5":
+        print(" ¡Gracias por usar el sistema! Hasta luego.")
+        break  # Salir del bucle y terminar
+    else:
+          print(" Opción inválida. Por favor elige entre 1 y 5.")
