@@ -1,0 +1,74 @@
+tareas = []
+
+# ---------------------- FUNCIONES ----------------------
+def agregar_tarea():
+    """Agrega una nueva tarea a la lista"""
+    print("\n---  Agregar Nueva Tarea ---")
+    nombre = input("Ingresa el nombre de la tarea: ").title().strip()
+
+    # Validación: nombre no vacío
+    if nombre == "":
+        print("Error: El nombre de la tarea no puede estar vacío.")
+        return
+
+    # Guardar tarea con estado 'Pendiente' por defecto
+    nueva_tarea = {
+        "nombre": nombre,
+        "estado": "Pendiente"
+    }
+    tareas.append(nueva_tarea)
+    print(f"Tarea '{nombre}' agregada correctamente.")
+
+
+def listar_tareas():
+    """Muestra todas las tareas registradas"""
+    print("\n---  Lista de Tareas ---")
+
+    # Validación: lista vacía
+    if not tareas:
+        print("No hay tareas registradas aún.")
+        return
+
+    # Mostrar cada tarea con su índice
+    for i, tarea in enumerate(tareas, start=1):
+        print(f"{i}. {tarea['nombre']} | Estado: {tarea['estado']}")
+
+
+def completar_tarea():
+    """Marca una tarea como completada"""
+    print("\n---  Marcar Tarea como Completada ---")
+
+    if not tareas:
+        print("No hay tareas para completar.")
+        return
+
+    try:
+        indice = int(input("Ingresa el número de la tarea a completar: ")) - 1
+
+        # Validación: índice válido
+        if 0 <= indice < len(tareas):
+            tareas[indice]["estado"] = "Completada"
+            print(f"Tarea '{tareas[indice]['nombre']}' marcada como completada.")
+        else:
+            print("Error: Número de tarea no existe.")
+
+    except ValueError:
+        print("Error: Debes ingresar un número válido.")
+
+
+def eliminar_tarea():
+    """Elimina una tarea de la lista"""
+    print("\n---  Eliminar Tarea ---")
+
+    if len(tareas) == 0:
+        print("No hay tareas para eliminar.")
+        return
+
+    try:
+        indice = int(input("Ingresa el número de la tarea a eliminar: ")) - 1
+
+        if 0 <= indice < len(tareas):
+            tarea_eliminada = tareas.pop(indice)
+            print(f"Tarea '{tarea_eliminada['nombre']}' eliminada correctamente.")
+        else:
+            print("Error: Número de tarea no existe.")
